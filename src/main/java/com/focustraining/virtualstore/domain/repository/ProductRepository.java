@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ProductRepository {
 
-    List<Product> products;
+    private List<Product> products;
 
     public ProductRepository() {
         products = new LinkedList<>();
