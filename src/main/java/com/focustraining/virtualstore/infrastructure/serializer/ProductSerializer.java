@@ -10,6 +10,13 @@ import java.io.IOException;
 public class ProductSerializer extends JsonSerializer<Product> {
     @Override
     public void serialize(Product product, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-
+        jsonGenerator.writeStartObject();
+        jsonGenerator.writeObjectField("id", product.getId());
+        jsonGenerator.writeObjectField("name", product.getName());
+        jsonGenerator.writeObjectField("price", product.getPrice());
+        jsonGenerator.writeEndObject();
+        jsonGenerator.flush();
+        jsonGenerator.close();
     }
+
 }

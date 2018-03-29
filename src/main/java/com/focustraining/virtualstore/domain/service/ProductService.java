@@ -14,15 +14,15 @@ public class ProductService {
     ProductRepository productRepository;
 
     public List<Product> getAllProducts() {
-        return productRepository.getAllProducts();
+        return productRepository.findAll();
     }
 
     public Product getProductById(int id) {
-        return productRepository.getProductById(id);
+        return productRepository.findById(id);
     }
 
     public Product getProductByName(String name) {
-        return productRepository.getProductByName(name);
+        return productRepository.findByName(name);
     }
 
     public boolean hasProductById(int id) {

@@ -19,6 +19,9 @@ public class ClientSerializer extends JsonSerializer<Client>{
         jsonGenerator.writeObjectField("name", client.getName());
         jsonGenerator.writeFieldName("orders");
         jsonGenerator.writeStartArray();
+
+
+
         orders.forEach(
                 order -> {
                     try {
@@ -35,4 +38,8 @@ public class ClientSerializer extends JsonSerializer<Client>{
         jsonGenerator.close();
     }
 
+    public JsonGenerator serialize2Order(Client client, JsonGenerator jsonGenerator) {
+
+        return jsonGenerator;
+    }
 }

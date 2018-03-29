@@ -32,7 +32,7 @@ public class ProductController {
         return productService.getProductByName(name);
     }
 
-    @RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/hasProduct/{id}", method = RequestMethod.GET)
     public boolean hasProduct(@PathVariable int id) {
         return productService.hasProductById(id);
     }

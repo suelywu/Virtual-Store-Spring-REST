@@ -14,6 +14,7 @@ public class ClientRepository {
 
     public ClientRepository() {
         clients = new LinkedList<>();
+        defaultClientRepositoryClients();
     }
 
     public List<Client> findAll() {
@@ -36,6 +37,9 @@ public class ClientRepository {
         clients.add(client);
     }
 
-
+    private void defaultClientRepositoryClients() {
+        clients.add(new Client(1, "Ana"));
+        clients.add(new Client(2, "Bianca"));
+    }
 
 }

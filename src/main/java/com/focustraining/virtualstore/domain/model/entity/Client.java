@@ -1,12 +1,15 @@
 package com.focustraining.virtualstore.domain.model.entity;
 
+import jdk.nashorn.internal.objects.annotations.Property;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-@Component
+
 public class Client {
 
     private final int id;
