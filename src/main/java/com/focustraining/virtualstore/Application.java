@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 		        "com.focustraining.virtualstore.domain",
                 "com.focustraining.virtualstore.application",
                 "com.focustraining.virtualstore.infrastructure",
-
+                "com.focustraining.virtualstore.domain.repository"
         }
 )
 public class Application {

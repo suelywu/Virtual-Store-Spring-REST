@@ -9,8 +9,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class ShoppingCartService {
 
+    private final ShoppingCartRepository shoppingCartRepository;
+
     @Autowired
-    private ShoppingCartRepository shoppingCartRepository;
+    public ShoppingCartService(ShoppingCartRepository shoppingCartRepository) {
+        this.shoppingCartRepository = shoppingCartRepository;
+    }
 
     public ShoppingCart getShoppingCart() {
         return shoppingCartRepository.getShoppingCart();

@@ -5,10 +5,8 @@ import com.focustraining.virtualstore.domain.model.entity.Order;
 import com.focustraining.virtualstore.domain.model.entity.ShoppingCart;
 import com.focustraining.virtualstore.domain.model.valueObject.ProductHolder;
 import com.focustraining.virtualstore.domain.model.valueObject.payment.Payment;
-import com.focustraining.virtualstore.domain.repository.ClientRepository;
-import com.focustraining.virtualstore.domain.repository.OrderRepository;
-import com.focustraining.virtualstore.domain.repository.ShoppingCartRepository;
 import com.focustraining.virtualstore.domain.repository.Store;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,33 +14,30 @@ import java.util.List;
 @Service
 public class OrderFinishService {
 
-    private Store store;
-    private OrderRepository orderRepository;
-    private ClientRepository clientRepository;
-    private ShoppingCartRepository shoppingCartRepository;
+    private final StoreService storeService;
+    private final OrderService orderService;
+    private final ShoppingCartService shoppingCartService;
 
-    public void finish(int clientId, Payment payment) {
-        ShoppingCart shoppingCart = shoppingCartRepository.getShoppingCart();
-        List<ProductHolder> productHolders = shoppingCart.getProductHolders();
-        int orderId = orderRepository.getNextIdToUse();
-        Client client = clientRepository.findById(clientId);
-
-        Order order = new Order(orderId, client, productHolders, payment);
-
-
-
+    @Autowired
+    public OrderFinishService(StoreService storeService, OrderService orderService, ShoppingCartService shoppingCartService) {
+        this.storeService = storeService;
+        this.orderService = orderService;
+        this.shoppingCartService = shoppingCartService;
     }
 
 
-
-    public void finalize(ShoppingCart shoppingCart, Client client, Payment payment, Store store) {
+    public void finish(Client client, Payment payment) {
+        ShoppingCart shoppingCart = shoppingCartService.getShoppingCart();
         List<ProductHolder> productHolders = shoppingCart.getProductHolders();
-        int id = lastId();
-
+        int id = orderService.getNextIdToUse();
+        Order order = new Order(id, client, productHolders, payment);
+        orderService.addOrderToRepository(order);
+        client.addOrder(order);
+        shoppingCart.clear();
+        productHolders.forEach(storeService::removeFromStore);
 
 
     }
-    public Order(int id, Client client, List<ProductHolder> productHolders, Payment payment) {
 
 
 }

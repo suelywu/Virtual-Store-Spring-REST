@@ -34,4 +34,11 @@ public class ProductHolder {
         return product.getId();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof ProductHolder) {
+            return product.getId() == ((ProductHolder) obj).getProductId();
+        }
+        return super.equals(obj);
+    }
 }
